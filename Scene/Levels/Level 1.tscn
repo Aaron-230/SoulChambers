@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://kqjgt4rccfkb"]
+
+[ext_resource type="PackedScene" uid="uid://drf84lo6mh14n" path="res://Scene/Player/Side Scroller.tscn" id="1_vdpco"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_vdpco"]
+distance = -54.0
+
+[node name="Level-1" type="Node2D" unique_id=442867748]
+
+[node name="Player" parent="." unique_id=1277115895 instance=ExtResource("1_vdpco")]
+
+[node name="Camera" type="Camera2D" parent="Player" unique_id=1379160325]
+
+[node name="Boundary" type="Area2D" parent="." unique_id=1415026792]
+
+[node name="Collision Shape" type="CollisionShape2D" parent="Boundary" unique_id=1322296989]
+shape = SubResource("WorldBoundaryShape2D_vdpco")
