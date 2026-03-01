@@ -40,10 +40,3 @@ func update_animations(direction, is_running):
 			Sprite.play("Running")
 		else:
 			Sprite.play("Walking")
-
-
-func _on_killzone_body_entered(body):
-	timer.start()
-
-func _on_timer_timeout():
-	get_tree().reload_current_scene()
