@@ -1,37 +1,54 @@
 [gd_scene format=3 uid="uid://kqjgt4rccfkb"]
 
 [ext_resource type="PackedScene" uid="uid://drf84lo6mh14n" path="res://Scene/Player/Side Scroller.tscn" id="1_grkow"]
+[ext_resource type="AudioStream" uid="uid://dp6o7jvbhbxei" path="res://Assets/Music/Level1.mp3" id="1_i0kag"]
 [ext_resource type="PackedScene" uid="uid://b4xyptdtg7pl" path="res://Scene/Levels/Level-1/Tile Map.tscn" id="2_d5p05"]
+[ext_resource type="PackedScene" uid="uid://o1qqv38mnymf" path="res://Scene/Killzone.tscn" id="3_i0kag"]
+[ext_resource type="PackedScene" uid="uid://dl1kmwxgcjxdd" path="res://Scene/Enemy.tscn" id="3_w7dtm"]
 [ext_resource type="Script" uid="uid://diubiwt6mml3m" path="res://Scripts/Finish.gd" id="3_y7e02"]
+[ext_resource type="PackedScene" uid="uid://ba5vxiyf6o2sa" path="res://Scene/Transition.tscn" id="6_e0bam"]
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_grkow"]
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_e0bam"]
 distance = -200.0
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_d5p05"]
-normal = Vector2(-0.999969, 0.007873772)
-distance = -59.0
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_w7dtm"]
+a = Vector2(77, -96)
+b = Vector2(77, 65)
 
 [node name="Level-1" type="Node2D" unique_id=442867748]
 
 [node name="TileMap" parent="." unique_id=54634364 instance=ExtResource("2_d5p05")]
 
 [node name="Player" parent="." unique_id=1277115895 instance=ExtResource("1_grkow")]
-position = Vector2(24, 9)
+position = Vector2(-256, 40)
 
 [node name="Camera" type="Camera2D" parent="Player" unique_id=1379160325]
 zoom = Vector2(2, 2)
 limit_bottom = 180
 
-[node name="Killzone" type="Area2D" parent="." unique_id=1220922577]
+[node name="Killzone" parent="." unique_id=945203994 instance=ExtResource("3_i0kag")]
 
-[node name="Collision Shape" type="CollisionShape2D" parent="Killzone" unique_id=765997316]
-shape = SubResource("WorldBoundaryShape2D_grkow")
+[node name="Collision Shape" type="CollisionShape2D" parent="Killzone" unique_id=1158734073]
+shape = SubResource("WorldBoundaryShape2D_e0bam")
+
+[node name="Enemy 1" parent="." unique_id=24979058 instance=ExtResource("3_w7dtm")]
+position = Vector2(-56, 72)
+
+[node name="Enemy 2" parent="." unique_id=227952090 instance=ExtResource("3_w7dtm")]
+position = Vector2(642, 73)
 
 [node name="Finish Line" type="Area2D" parent="." unique_id=419574992]
 position = Vector2(723, 32)
 script = ExtResource("3_y7e02")
+target_level_path = "uid://b2m1o2dypuug"
 
 [node name="Finish" type="CollisionShape2D" parent="Finish Line" unique_id=1184435447]
-shape = SubResource("WorldBoundaryShape2D_d5p05")
+shape = SubResource("SegmentShape2D_w7dtm")
 
-[connection signal="body_entered" from="Killzone" to="Player" method="_on_killzone_body_entered"]
+[node name="CanvasLayer" parent="Finish Line" unique_id=2118788712 instance=ExtResource("6_e0bam")]
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="Finish Line" unique_id=89043094]
+stream = ExtResource("1_i0kag")
+autoplay = true
+
+[connection signal="body_entered" from="Finish Line" to="Finish Line" method="_on_body_entered"]

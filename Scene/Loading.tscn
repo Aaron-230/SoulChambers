@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://c6oyjynq4n3db"]
+
+[ext_resource type="Script" uid="uid://dkeyblevuneas" path="res://Scripts/Loading.gd" id="1_uxt5u"]
+[ext_resource type="VideoStream" uid="uid://cc8k1sd4dj2nj" path="res://Assets/Untitled-design.ogv" id="2_cbh0q"]
+
+[node name="Node2D" type="Node2D" unique_id=178730053]
+script = ExtResource("1_uxt5u")
+target_level_path = "uid://kqjgt4rccfkb"
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="." unique_id=274357322]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -10.0
+offset_right = 2304.0
+offset_bottom = 1296.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+stream = ExtResource("2_cbh0q")
+autoplay = true
+
+[connection signal="finished" from="VideoStreamPlayer" to="." method="_on_video_stream_player_finished"]

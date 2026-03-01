@@ -1,0 +1,93 @@
+[gd_scene format=3 uid="uid://6eaokiatvki2"]
+
+[ext_resource type="Script" uid="uid://ql0e1axomu6q" path="res://Scene/Splash Screen/Menu.gd" id="1_wmuk2"]
+[ext_resource type="FontFile" uid="uid://e58knwho2do5" path="res://Scene/Splash Screen/Font/Tiny5-Regular.ttf" id="1_xelir"]
+[ext_resource type="AudioStream" uid="uid://ce4tai7xw06fs" path="res://Scene/Splash Screen/Menu Sound.mp3" id="2_m2w4e"]
+[ext_resource type="Texture2D" uid="uid://2iolhbh04asx" path="res://Scene/Splash Screen/Logo.png" id="3_i6g2l"]
+[ext_resource type="VideoStream" uid="uid://hktfvnuiidth" path="res://Scene/Splash Screen/Background.ogv" id="4_i6g2l"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wmuk2"]
+bg_color = Color(0.332881, 0.332881, 0.332881, 0.52549)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jkj1q"]
+bg_color = Color(0.176471, 0.176471, 0.176471, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xelir"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p6bxp"]
+bg_color = Color(0.176471, 0.176471, 0.176471, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i6g2l"]
+
+[node name="Menu" type="Control" unique_id=605776172]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wmuk2")
+target_level_path = "uid://c6oyjynq4n3db"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=859262030]
+stream = ExtResource("2_m2w4e")
+autoplay = true
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="." unique_id=110237164]
+layout_mode = 0
+offset_right = 1153.0
+offset_bottom = 705.0
+stream = ExtResource("4_i6g2l")
+autoplay = true
+expand = true
+loop = true
+
+[node name="Panel" type="Panel" parent="." unique_id=966568585]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wmuk2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1920949981]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -228.0
+offset_top = -20.0
+offset_right = 229.0
+offset_bottom = 210.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="Start" type="Button" parent="VBoxContainer" unique_id=1378842505]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("1_xelir")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/normal = SubResource("StyleBoxFlat_jkj1q")
+theme_override_styles/hover = SubResource("StyleBoxFlat_xelir")
+text = "Start Game"
+
+[node name="Exit" type="Button" parent="VBoxContainer" unique_id=1625521096]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("1_xelir")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/normal = SubResource("StyleBoxFlat_p6bxp")
+theme_override_styles/hover = SubResource("StyleBoxFlat_i6g2l")
+text = "Exit"
+
+[node name="Logo" type="Sprite2D" parent="." unique_id=614870912]
+position = Vector2(583, 156)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("3_i6g2l")
+
+[connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_exit_pressed"]

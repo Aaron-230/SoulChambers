@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://dl1kmwxgcjxdd"]
+
+[ext_resource type="Script" uid="uid://0qoo8n52unu3" path="res://Scripts/Enemy.gd" id="1_h0dic"]
+[ext_resource type="Texture2D" uid="uid://wgbdn6sqydaj" path="res://Assets/TileMap/Level 1.png" id="2_jy6qf"]
+[ext_resource type="PackedScene" uid="uid://o1qqv38mnymf" path="res://Scene/Killzone.tscn" id="3_jy6qf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_le5ry"]
+atlas = ExtResource("2_jy6qf")
+region = Rect2(112, 80, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6frff"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_le5ry")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jy6qf"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_le5ry"]
+size = Vector2(16, 16)
+
+[node name="Enemy" type="CharacterBody2D" unique_id=24979058]
+script = ExtResource("1_h0dic")
+
+[node name="Mushroom" type="AnimatedSprite2D" parent="." unique_id=956387339]
+sprite_frames = SubResource("SpriteFrames_6frff")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mushroom" unique_id=1681707714]
+shape = SubResource("RectangleShape2D_jy6qf")
+
+[node name="Killzone" parent="." unique_id=945203994 instance=ExtResource("3_jy6qf")]
+
+[node name="Collision Shape" type="CollisionShape2D" parent="Killzone" unique_id=196255471]
+shape = SubResource("RectangleShape2D_le5ry")
+
+[node name="RayCast Right" type="RayCast2D" parent="." unique_id=1800582476]
+target_position = Vector2(15, 0)
+
+[node name="RayCast Left" type="RayCast2D" parent="." unique_id=1470084518]
+target_position = Vector2(-15, 0)

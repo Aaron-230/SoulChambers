@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://b2m1o2dypuug"]
+
+[ext_resource type="PackedScene" uid="uid://mbhag6erfy58" path="res://Scene/Levels/Level-2/Tile Map.tscn" id="1_d2fvq"]
+[ext_resource type="PackedScene" uid="uid://y74vh0ch53le" path="res://Scene/Player/Top Down.tscn" id="1_f38lp"]
+[ext_resource type="AudioStream" uid="uid://cxd6gvu2oyeka" path="res://Assets/Music/Level2.mp3" id="1_k75dg"]
+[ext_resource type="PackedScene" uid="uid://o1qqv38mnymf" path="res://Scene/Killzone.tscn" id="3_0qj01"]
+[ext_resource type="Script" uid="uid://diubiwt6mml3m" path="res://Scripts/Finish.gd" id="4_h0asn"]
+[ext_resource type="PackedScene" uid="uid://ba5vxiyf6o2sa" path="res://Scene/Transition.tscn" id="5_iw538"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_h0asn"]
+a = Vector2(-110, -56)
+b = Vector2(-109, 25)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_0qj01"]
+a = Vector2(544, 93)
+b = Vector2(544, 13)
+
+[node name="Level 2" type="Node2D" unique_id=1395865227]
+
+[node name="TileMap" parent="." unique_id=733269798 instance=ExtResource("1_d2fvq")]
+position = Vector2(89.53918, 124.81428)
+
+[node name="Player" parent="." unique_id=1294083445 instance=ExtResource("1_f38lp")]
+position = Vector2(-673, -56)
+
+[node name="Camera" type="Camera2D" parent="Player" unique_id=20664173]
+zoom = Vector2(2.5, 2.5)
+
+[node name="Killzone" parent="." unique_id=945203994 instance=ExtResource("3_0qj01")]
+
+[node name="Collision" type="CollisionShape2D" parent="Killzone" unique_id=898312343]
+position = Vector2(-682, -41)
+shape = SubResource("SegmentShape2D_h0asn")
+
+[node name="Finish" type="Area2D" parent="." unique_id=652932167]
+script = ExtResource("4_h0asn")
+target_level_path = "uid://vv54hxnup0nx"
+
+[node name="Finish Line" type="CollisionShape2D" parent="Finish" unique_id=591405327]
+position = Vector2(553, -17)
+shape = SubResource("SegmentShape2D_0qj01")
+
+[node name="CanvasLayer" parent="Finish" unique_id=2118788712 instance=ExtResource("5_iw538")]
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="Finish" unique_id=1756350025]
+stream = ExtResource("1_k75dg")
+autoplay = true
+
+[connection signal="body_entered" from="Finish" to="Finish" method="_on_body_entered"]

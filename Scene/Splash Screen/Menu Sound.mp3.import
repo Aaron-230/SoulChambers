@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ce4tai7xw06fs"
+path="res://.godot/imported/Menu Sound.mp3-40fc4ab96c8546111b2a5311201c3ea1.mp3str"
+
+[deps]
+
+source_file="res://Scene/Splash Screen/Menu Sound.mp3"
+dest_files=["res://.godot/imported/Menu Sound.mp3-40fc4ab96c8546111b2a5311201c3ea1.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
